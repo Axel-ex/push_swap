@@ -71,14 +71,17 @@ char	**split(char *s, char sep)
 	if (!split)
 		return (NULL);
 	i = 0;
-	split[++i] = NULL;
+	split[++i] = "\0";
 	while (*s)
 	{
-		while (*s && *s == sep)
-			s++;
-		split[i] = get_next_word(s, sep);
-		i++;
-		while (*s && *s != sep)
+		if (*s != sep)
+		{
+			split[i] = get_next_word(s, sep);
+			i++;
+			while (*s && *s != sep)
+				s++;
+		}
+		else
 			s++;
 	}
 	split[i] = NULL;

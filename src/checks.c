@@ -6,28 +6,13 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 10:41:07 by achabrer          #+#    #+#             */
-/*   Updated: 2023/09/11 15:50:10 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/09/13 09:47:21 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pushswap.h"
 
-long	*argv_to_int(char **argv, int argc)
-{
-	long	*argv_int;
-	long	*origin;
-
-	argv_int = (long *)malloc(sizeof(long) * argc - 1);
-	if (!argv_int)
-		return (NULL);
-	origin = argv_int;
-	argv++;
-	while (*argv)
-		*argv_int++ = ft_atol(*argv++);
-	return (origin);
-}
-
-static bool	check_valid_char(char **argv)
+bool	check_valid_char(char **argv)
 {
 	char	*s;
 
@@ -35,6 +20,9 @@ static bool	check_valid_char(char **argv)
 	while (*argv)
 	{
 		s = *argv;
+		if (!((*s >= '0' && *s <= '9') || *s == '-' || *s == '+'))
+			return (false);
+		s++;
 		while (*s)
 		{
 			if (*s < '0' || *s > '9')
@@ -46,51 +34,26 @@ static bool	check_valid_char(char **argv)
 	return (true);
 }
 
-
-static bool	check_duplicates(long *argv_int, int argc)
+bool	check_duplicates(long nb, t_node *stack)
 {
-	int	i;
-	int	j;
-
-	i = 0;
-	while (argv_int[i])
+	if (!stack)
+		return (true);
+	while (stack)
 	{
-		j = 1;
-		while (j < argc - 1)
-		{
-			if (argv_int[i] == argv_int[j] && i != j)
-				return (false);
-			j++;
-		}
-		i++;
-	}
-	return (true);
-}
-
-static bool	check_outbounds(long *argv_int)
-{
-	while (*argv_int)
-	{
-		if (*argv_int < INT32_MIN || *argv_int > INT32_MAX)
+		if (stack->data == nb)
 			return (false);
-		argv_int++;
+		stack = stack->next;
 	}
 	return (true);
 }
 
-bool	check_valid(char **argv, int argc)
+bool	is_sorted(t_node *stack)
 {
-	long	*argv_int;
-
-	if (check_valid_char(argv))
+	while (stack->next)
 	{
-		argv_int = argv_to_int(argv, argc);
-		if (check_outbounds(argv_int) && check_duplicates(argv_int, argc))
-		{
-			free(argv_int);
-			return (true);
-		}
-		free(argv_int);
+		if (stack->data > stack->next->data)
+			return (false);
+		stack = stack->next;
 	}
-	return (false);
+	return (true);
 }

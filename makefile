@@ -1,20 +1,25 @@
-NAME = push_swap
+NAME		= push_swap
 
-SRC = src/main.c src/split.c src/checks.c src/exit.c src/utils.c
+OBJ_DIR		= obj
 
-OBJ = $(SRC:.c=.o)
+SRC_DIR		= src
 
-LIBFT = Libft/libft.a
+SRC			= $(wildcard $(SRC_DIR)/*.c)
 
-FLAGS = -Wall -Wextra -Werror
+OBJ			= $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC))
 
-INC = includes/
+LIBFT		= Libft/libft.a
 
-GREEN = \033[38;5;47m
-RESET = \033[0m
+FLAGS		= -Wall -Wextra -Werror
 
-%.o:%.c
-	cc $(FLAGS) -g -c $< -o $(<:.c=.o)
+INC			= includes/
+
+GREEN		= \033[38;5;47m
+YELLOW		= \033[38;5;226m
+RESET 		= \033[0m
+
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
+	cc $(FLAGS) -g -c $< -o $@
 
 all: $(NAME)
 	@echo "$(GREEN)$(NAME) executable created$(RESET)"
@@ -27,7 +32,8 @@ $(LIBFT):
 	make clean -C Libft/
 
 clean:
-	rm -rf $(OBJ)
+	@rm -rf $(OBJ)
+	@echo "$(YELLOW)Removing objects files$(RESET)"
 
 fclean: clean
 	rm -rf $(NAME)

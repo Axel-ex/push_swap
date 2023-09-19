@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 14:44:18 by achabrer          #+#    #+#             */
-/*   Updated: 2023/09/11 15:15:17 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/09/19 11:05:34 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,19 +36,24 @@ long	ft_atol(const char *s)
 	return (nb * sign);
 }
 
-bool	is_sorted(char **argv, int argc)
+t_node	*get_last_node(t_node *stack)
 {
-	int		i;
-	long	*argv_int;
+	if (!stack)
+		return (NULL);
+	while (stack->next)
+		stack = stack->next;
+	return (stack);
+}
 
-	i = 1;
-	argv_int = argv_to_int(argv, argc);
-	while (i < argc - 1)
+int	get_stack_size(t_node *stack)
+{
+	int	i;
+
+	i = 0;
+	while (stack->next)
 	{
-		if (argv_int[i] < argv_int[i - 1])
-			return (false);
+		stack = stack->next;
 		i++;
 	}
-	free (argv_int);
-	return (true);
+	return (i);
 }

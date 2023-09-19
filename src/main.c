@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 09:32:17 by achabrer          #+#    #+#             */
-/*   Updated: 2023/09/11 15:43:10 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/09/19 11:31:56 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,25 @@
 
 int	main(int argc, char **argv)
 {
-	// t_node	*stack_a;
-	// t_node	*stack_b;
+	t_node	*stack_a;
+	t_node	*stack_b;
 
-	// stack_a = NULL;
-	// stack_b = NULL;
+	stack_a = NULL;
+	stack_b = NULL;
 	if (argc == 1 || (argc == 2 && !argv[1][0]))
-		exit_error();
+		return (EXIT_FAILURE);
 	if (argc == 2)
-	{
-		argc = count_words(argv[1], ' ') + 1;
 		argv = split(argv[1], ' ');
+	if (!check_valid_char(argv))
+		exit_error(NULL, argv, argc == 2);
+	stack_init(&stack_a, argv, argc == 2);
+	if (is_sorted(stack_a))
+		ft_printf("it's already sorted!");
+	else
+	{
+		/* ALGO */
 	}
-	if (!check_valid(argv, argc))
-		exit_error();
-	// if (!is_sorted(argv, argc))
-	// {
-	// 	/* algo */
-	// }
-	destroy_argv(argv, argc);
-		//stack_init(stack_a);
-	//if not sorted, perform the algo
+	destroy_stack(&stack_a);
+	destroy_stack(&stack_b);
 	return (EXIT_SUCCESS);
 }
