@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 10:25:29 by achabrer          #+#    #+#             */
-/*   Updated: 2023/09/19 11:31:22 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/09/21 09:37:11 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void	exit_error(t_node **stack, char **argv, bool split_flag)
 	destroy_stack(stack);
 	if (split_flag)
 		free_matrix(argv);
-	ft_printf("Error\n");
-	exit(EXIT_FAILURE);
+	ft_putstr_fd("Error\n", STDERR_FILENO);
+	exit(EXIT_SUCCESS);
 }
 
 void	free_matrix(char **argv)

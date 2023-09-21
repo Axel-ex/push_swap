@@ -1,16 +1,86 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   init_checks.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 15:56:33 by achabrer          #+#    #+#             */
-/*   Updated: 2023/09/19 10:49:20 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/09/21 09:46:12 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pushswap.h"
+
+static long	ft_atol(const char *s)
+{
+	int		sign;
+	long	nb;
+
+	sign = 1;
+	nb = 0;
+	while ((*s >= '\t' && *s <= '\r') || *s == ' ')
+		s++;
+	if (*s == '-' || *s == '+')
+	{
+		if (*s == '-')
+			sign = -sign;
+		s++;
+	}
+	while (ft_isdigit(*s) == 1)
+	{
+		nb *= 10;
+		nb += *s - '0';
+		s++;
+	}
+	return (nb * sign);
+}
+
+bool	check_valid_char(char **argv)
+{
+	char	*s;
+
+	argv++;
+	while (*argv)
+	{
+		s = *argv;
+		if (!((*s >= '0' && *s <= '9') || *s == '-' || *s == '+'))
+			return (false);
+		s++;
+		while (*s)
+		{
+			if (*s < '0' || *s > '9')
+				return (false);
+			s++;
+		}
+		argv++;
+	}
+	return (true);
+}
+
+static bool	check_duplicates(long nb, t_node *stack)
+{
+	if (!stack)
+		return (true);
+	while (stack)
+	{
+		if (stack->data == nb)
+			return (false);
+		stack = stack->next;
+	}
+	return (true);
+}
+
+bool	is_sorted(t_node *stack)
+{
+	while (stack->next)
+	{
+		if (stack->data > stack->next->data)
+			return (false);
+		stack = stack->next;
+	}
+	return (true);
+}
 
 void	stack_init(t_node **stack, char **argv, bool split_flag)
 {
@@ -30,27 +100,4 @@ void	stack_init(t_node **stack, char **argv, bool split_flag)
 	}
 	if (split_flag)
 		free_matrix(argv);
-}
-
-void	node_add_back(long nb, t_node **stack)
-{
-	t_node	*new;
-	t_node	*last;
-
-	new = (t_node *)malloc(sizeof(t_node));
-	if (!new)
-		return ;
-	new->data = (int)nb;
-	new->next = NULL;
-	if (!*stack)
-	{
-		*stack = new;
-		new->prev = NULL;
-	}
-	else
-	{
-		last = get_last_node(*stack);
-		last->next = new;
-		new->prev = last;
-	}
 }

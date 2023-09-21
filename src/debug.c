@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 13:22:19 by achabrer          #+#    #+#             */
-/*   Updated: 2023/09/18 16:21:31 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/09/21 15:25:49 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,15 @@ void	read_stack(t_node *stack, bool flag_a)
 		printf("Stack_b:\n");
 	while (stack)
 	{
-		printf("%d", stack->data);
-		if (stack->next)
-			printf(", ");
+		printf("--------------------\n");
+		if (stack->pos)
+			printf("position: %d\n", stack->pos);
+		printf("data: %d\n", stack->data);
+		if (stack->price)
+			printf("price: %d\n", stack->price);
+		if (stack->target_node)
+			printf("pos of target_node: %d\n", stack->target_node->pos);
+		printf("--------------------\n\n");
 		stack = stack->next;
 	}
 	printf("\n\n");
