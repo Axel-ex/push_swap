@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 10:56:16 by achabrer          #+#    #+#             */
-/*   Updated: 2023/09/18 14:20:48 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/09/21 17:17:03 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 typedef struct s_node
 {
     int                data;
-    int                pos;
+    int                position;
     struct s_node    *next;
     struct s_node    *prev;
 } t_node;

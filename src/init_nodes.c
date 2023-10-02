@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 10:26:18 by achabrer          #+#    #+#             */
-/*   Updated: 2023/09/21 16:37:26 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/09/27 16:29:13 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	get_position(t_node *stack)
 	median = get_stack_size(stack) / 2;
 	while (stack)
 	{
-		stack->pos = pos;
+		stack->position = pos;
 		if (pos < median)
 			stack->above_median = true;
 		else
@@ -71,18 +71,18 @@ void	get_price(t_node *stack_a, t_node *stack_b)
 	size_b = get_stack_size(stack_b);
 	while (stack_b)
 	{
-		stack_b->price = stack_b->pos;
+		stack_b->price = stack_b->position;
 		if (!stack_b->above_median)
-			stack_b->price = size_b - stack_b->pos;
+			stack_b->price = size_b - stack_b->position;
 		if (stack_b->target_node->above_median)
-			stack_b->price += stack_b->target_node->pos;
+			stack_b->price += stack_b->target_node->position;
 		else
-			stack_b->price += size_a - stack_b->target_node->pos;
+			stack_b->price += size_a - stack_b->target_node->position;
 		stack_b = stack_b->next;
 	}
 }
 
-void	get_cheapest(t_node *stack)
+t_node	*get_cheapest(t_node *stack)
 {
 	t_node	*cheapest;
 
@@ -93,6 +93,7 @@ void	get_cheapest(t_node *stack)
 			cheapest = stack;
 		stack = stack->next;
 	}
+	return (cheapest);
 }
 
 void	init_nodes(t_node **stack_a, t_node **stack_b)

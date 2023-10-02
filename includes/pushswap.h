@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 09:30:08 by achabrer          #+#    #+#             */
-/*   Updated: 2023/09/21 16:35:27 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/10/02 12:51:51 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 typedef struct s_node
 {
 	int				data;
-	int				pos;
+	int				position;
 	int				price;
 	bool			above_median;
 	bool			cheapest;
@@ -65,6 +65,8 @@ void	pb(t_node **stack_a, t_node **stack_b);
 /* Rotate */
 void	ra(t_node **stack_a, bool reverse_flag);
 void	rb(t_node **stack_b, bool reverse_flag);
+void	rotate_both(t_node **stack_a, t_node **stack_b,
+			t_node *cheapest, bool reverse_flag);
 
 /* Algo*/
 /* tiny sort*/
@@ -74,8 +76,8 @@ void	tiny_sort(t_node **stack);
 void	get_position(t_node *stack);
 void	get_target_node(t_node *stack_a, t_node *stack_b);
 void	get_price(t_node *stack_a, t_node *stack_b);
-void	get_cheapest(t_node *stack);
 void	init_nodes(t_node **stack_a, t_node **stack_b);
+t_node	*get_cheapest(t_node *stack);
 
 /* Push_swap */
 void	push_swap(t_node **stack_a, t_node **stack_b);

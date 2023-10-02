@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   commands.c                                         :+:      :+:    :+:   */
+/*   swap.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 10:07:38 by achabrer          #+#    #+#             */
-/*   Updated: 2023/09/18 13:06:38 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/10/02 16:04:51 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ static void	swap(t_node **stack)
 		(*stack)->next = (*stack)->next->next;
 		(*stack)->prev->next = *stack;
 		*stack = (*stack)->prev;
+		(*stack)->next->next->prev = (*stack)->next;
 	}
 }
 
