@@ -7,7 +7,7 @@
       "request": "launch",
       "program": "${fileDirname}/../push_swap",
       "args": [
-        "54 89 67 2 48 32 15 78 1 3 4"
+        "-450356539 -400657521 -152265777 778118471 1671075001"
       ],
       "stopAtEntry": false,
       "cwd": "${fileDirname}",

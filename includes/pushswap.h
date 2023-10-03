@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 09:30:08 by achabrer          #+#    #+#             */
-/*   Updated: 2023/10/02 12:51:51 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/10/03 11:10:11 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ typedef struct s_node
 	int				position;
 	int				price;
 	bool			above_median;
-	bool			cheapest;
 	struct s_node	*target_node;
 	struct s_node	*next;
 	struct s_node	*prev;
@@ -71,6 +70,7 @@ void	rotate_both(t_node **stack_a, t_node **stack_b,
 /* Algo*/
 /* tiny sort*/
 void	tiny_sort(t_node **stack);
+void	small_sort(t_node **stack_a, t_node **stack_b);
 
 /* init_nodes */
 void	get_position(t_node *stack);
@@ -81,6 +81,7 @@ t_node	*get_cheapest(t_node *stack);
 
 /* Push_swap */
 void	push_swap(t_node **stack_a, t_node **stack_b);
+void	finish_rotation(t_node **stack, t_node *top, char stack_name);
 
 /* Debug */
 void	read_stack(t_node *stack, bool flag_a);
