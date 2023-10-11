@@ -2,3 +2,5 @@ test/
 obj/
 push_swap
 .vscode/
+DS_Store
+*/DS_Store
