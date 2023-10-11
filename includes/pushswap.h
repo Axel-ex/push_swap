@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 09:30:08 by achabrer          #+#    #+#             */
-/*   Updated: 2023/10/11 12:47:14 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/10/11 12:50:08 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,10 +119,10 @@ int		get_stack_size(t_node *stack);
 /**
  * @brief add a node at the end of the stack.
  * 
- * @param nb value held by the node
+ * @param value held by the node
  * @param stack to add to
  */
-void	node_add_back(long nb, t_node **stack);
+void	node_add_back(long value, t_node **stack);
 
 /**
  * @brief return the last node.

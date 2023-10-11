@@ -6,13 +6,11 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 10:07:38 by achabrer          #+#    #+#             */
-/*   Updated: 2023/10/02 16:04:51 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/10/11 12:53:47 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pushswap.h"
-
-/* swap the two first node located on top of the stack*/
 
 static void	swap(t_node **stack)
 {
@@ -25,7 +23,8 @@ static void	swap(t_node **stack)
 		(*stack)->next = (*stack)->next->next;
 		(*stack)->prev->next = *stack;
 		*stack = (*stack)->prev;
-		(*stack)->next->next->prev = (*stack)->next;
+		if ((*stack)->next->next)
+			(*stack)->next->next->prev = (*stack)->next;
 	}
 }
 
