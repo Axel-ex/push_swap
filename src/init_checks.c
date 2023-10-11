@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 15:56:33 by achabrer          #+#    #+#             */
-/*   Updated: 2023/09/21 09:46:12 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/10/11 12:20:20 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ bool	check_valid_char(char **argv)
 	{
 		s = *argv;
 		if (!((*s >= '0' && *s <= '9') || *s == '-' || *s == '+'))
+			return (false);
+		if ((*s == '-' || *s == '+') && *(s + 1) == '\0')
 			return (false);
 		s++;
 		while (*s)
@@ -91,7 +93,7 @@ void	stack_init(t_node **stack, char **argv, bool split_flag)
 	while (argv[i])
 	{
 		nb = ft_atol(argv[i]);
-		if (nb < INT32_MIN || nb > INT32_MAX)
+		if (nb < INT_MIN || nb > INT_MAX)
 			exit_error(stack, argv, split_flag);
 		if (!check_duplicates(nb, *stack))
 			exit_error(stack, argv, split_flag);

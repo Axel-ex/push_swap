@@ -6,13 +6,13 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 10:26:18 by achabrer          #+#    #+#             */
-/*   Updated: 2023/09/27 16:29:13 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/10/11 12:06:33 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pushswap.h"
 
-void	get_position(t_node *stack)
+void	set_position(t_node *stack)
 {
 	int	pos;
 	int	median;
@@ -33,28 +33,28 @@ void	get_position(t_node *stack)
 	}
 }
 
-void	get_target_node(t_node *stack_a, t_node *stack_b)
+void	set_target_node(t_node *stack_a, t_node *stack_b)
 {
-	t_node	*origin;
-	t_node	*target;
-	int		diff_min;
+	t_node		*origin;
+	t_node		*target;
+	long		best_match;
 
 	origin = stack_a;
 	while (stack_b)
 	{
-		diff_min = INT32_MAX;
+		best_match = LONG_MAX;
 		while (stack_a)
 		{
 			if (stack_a->data > stack_b->data
-				&& (stack_a->data - stack_b->data) < diff_min)
+				&& stack_a->data < best_match)
 			{
 				target = stack_a;
-				diff_min = stack_a->data - stack_b->data;
+				best_match = stack_a->data;
 			}
 			stack_a = stack_a->next;
 		}
 		stack_a = origin;
-		if (diff_min == INT32_MAX)
+		if (best_match == LONG_MAX)
 			stack_b->target_node = get_smallest(stack_a);
 		else
 			stack_b->target_node = target;
@@ -62,7 +62,7 @@ void	get_target_node(t_node *stack_a, t_node *stack_b)
 	}
 }
 
-void	get_price(t_node *stack_a, t_node *stack_b)
+void	set_price(t_node *stack_a, t_node *stack_b)
 {
 	int	size_a;
 	int	size_b;
@@ -98,8 +98,8 @@ t_node	*get_cheapest(t_node *stack)
 
 void	init_nodes(t_node **stack_a, t_node **stack_b)
 {
-	get_position(*stack_a);
-	get_position(*stack_b);
-	get_target_node(*stack_a, *stack_b);
-	get_price(*stack_a, *stack_b);
+	set_position(*stack_a);
+	set_position(*stack_b);
+	set_target_node(*stack_a, *stack_b);
+	set_price(*stack_a, *stack_b);
 }

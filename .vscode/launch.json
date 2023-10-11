@@ -7,7 +7,7 @@
       "request": "launch",
       "program": "${fileDirname}/../push_swap",
       "args": [
-        "-450356539 -400657521 -152265777 778118471 1671075001"
+        "-50 -"
       ],
       "stopAtEntry": false,
       "cwd": "${fileDirname}",
@@ -20,8 +20,8 @@
       "type": "lldb",
       "request": "launch",
       "args": [],
-      "cwd": "/Users/Axel/Desktop/Ecole_42/push_swap",
-      "program": "/Users/Axel/Desktop/Ecole_42/push_swap/build/Debug/outDebug"
+      "cwd": "/Users/Axel/Desktop/Ecole_42/push_swap/src",
+      "program": "/Users/Axel/Desktop/Ecole_42/push_swap/src/build/Debug/outDebug"
     }
   ]
 }
