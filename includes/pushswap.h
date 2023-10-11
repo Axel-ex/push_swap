@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 09:30:08 by achabrer          #+#    #+#             */
-/*   Updated: 2023/10/11 12:50:08 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/10/11 17:23:33 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ typedef struct s_node
 	struct s_node	*prev;
 }	t_node;
 
-
 /// ============================================================================
 // SPLIT.C
 // =============================================================================
@@ -44,7 +43,6 @@ typedef struct s_node
  * @return char** 
  */
 char	**split(char *s, char sep);
-
 
 // =============================================================================
 // INIT_CHECK.C
@@ -77,7 +75,6 @@ bool	check_valid_char(char **argv);
  */
 bool	is_sorted(t_node *stack);
 
-
 // =============================================================================
 // EXIT.C
 // =============================================================================
@@ -103,7 +100,6 @@ void	destroy_stack(t_node **stack);
  * @param argv 
  */
 void	free_matrix(char **argv);
-
 
 // =============================================================================
 // STACK_UTILS.C
@@ -148,7 +144,6 @@ t_node	*get_highest(t_node *stack);
  */
 t_node	*get_smallest(t_node *stack);
 
-
 // =============================================================================
 // SWAP.C
 // =============================================================================
@@ -165,15 +160,6 @@ void	sa(t_node **stack);
  * @param stack 
  */
 void	sb(t_node **stack);
-
-/**
- * @brief swap simultaneously two first elements of both stacks.
- * 
- * @param stack_a 
- * @param stack_b 
- */
-void	ss(t_node **stack_a, t_node **stack_b);
-
 
 // =============================================================================
 // PUSH.C
@@ -193,7 +179,6 @@ void	pa(t_node **stack_a, t_node **stack_b);
  * @param stack_b 
  */
 void	pb(t_node **stack_a, t_node **stack_b);
-
 
 // =============================================================================
 // ROTATE.C
@@ -229,7 +214,6 @@ void	rb(t_node **stack_b, bool reverse_flag);
 void	rotate_both(t_node **stack_a, t_node **stack_b,
 			t_node *cheapest, bool reverse_flag);
 
-
 // =============================================================================
 // TINY_SORT.C
 // =============================================================================
@@ -247,7 +231,6 @@ void	tiny_sort(t_node **stack);
  * @param stack_b 
  */
 void	small_sort(t_node **stack_a, t_node **stack_b);
-
 
 // =============================================================================
 // INIT_NODES.C
@@ -293,7 +276,6 @@ void	init_nodes(t_node **stack_a, t_node **stack_b);
  */
 t_node	*get_cheapest(t_node *stack);
 
-
 // =============================================================================
 // PUSH_SWAP.C
 // =============================================================================
@@ -316,7 +298,6 @@ void	push_swap(t_node **stack_a, t_node **stack_b);
  * @param stack_name 'a' or 'b'
  */
 void	finish_rotation(t_node **stack, t_node *top, char stack_name);
-
 
 // =============================================================================
 // DEBUG.C
