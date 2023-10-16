@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 10:26:18 by achabrer          #+#    #+#             */
-/*   Updated: 2023/09/27 16:29:13 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/10/10 16:28:39 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	get_target_node(t_node *stack_a, t_node *stack_b)
 	origin = stack_a;
 	while (stack_b)
 	{
-		diff_min = INT32_MAX;
+		diff_min = __INT_MAX__;
 		while (stack_a)
 		{
 			if (stack_a->data > stack_b->data
@@ -54,7 +54,7 @@ void	get_target_node(t_node *stack_a, t_node *stack_b)
 			stack_a = stack_a->next;
 		}
 		stack_a = origin;
-		if (diff_min == INT32_MAX)
+		if (diff_min == __INT_MAX__)
 			stack_b->target_node = get_smallest(stack_a);
 		else
 			stack_b->target_node = target;
