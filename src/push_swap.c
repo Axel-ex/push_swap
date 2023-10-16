@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 13:55:57 by achabrer          #+#    #+#             */
-/*   Updated: 2023/10/03 11:36:57 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/10/11 09:43:48 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	finish_rotation(t_node **stack, t_node *top, char stack_name)
 	}
 }
 
-void	move_node(t_node **stack_a, t_node **stack_b)
+static void	move_node(t_node **stack_a, t_node **stack_b)
 {
 	t_node	*cheapest;
 
@@ -64,7 +64,7 @@ void	push_swap(t_node **stack_a, t_node **stack_b)
 		init_nodes(stack_a, stack_b);
 		move_node(stack_a, stack_b);
 	}
-	get_position(*stack_a);
+	set_position(*stack_a);
 	smallest = get_smallest(*stack_a);
 	while (*stack_a != smallest)
 	{

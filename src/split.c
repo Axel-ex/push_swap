@@ -6,13 +6,13 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 09:16:34 by achabrer          #+#    #+#             */
-/*   Updated: 2023/09/21 09:16:42 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/10/11 08:42:35 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pushswap.h"
 
-int	count_words(char *s, char sep)
+static int	count_words(char *s, char sep)
 {
 	bool	inside_word;
 	int		count;

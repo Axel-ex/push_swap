@@ -6,7 +6,11 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 15:56:33 by achabrer          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/10/10 16:29:24 by achabrer         ###   ########.fr       */
+=======
+/*   Updated: 2023/10/11 12:20:20 by achabrer         ###   ########.fr       */
+>>>>>>> 76646048710f3fb39d8cac556c9155a3f25051c2
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +49,8 @@ bool	check_valid_char(char **argv)
 	{
 		s = *argv;
 		if (!((*s >= '0' && *s <= '9') || *s == '-' || *s == '+'))
+			return (false);
+		if ((*s == '-' || *s == '+') && *(s + 1) == '\0')
 			return (false);
 		s++;
 		while (*s)
@@ -91,7 +97,11 @@ void	stack_init(t_node **stack, char **argv, bool split_flag)
 	while (argv[i])
 	{
 		nb = ft_atol(argv[i]);
+<<<<<<< HEAD
 		if (nb < __INT_MAX__ || nb > __INT_MAX__)
+=======
+		if (nb < INT_MIN || nb > INT_MAX)
+>>>>>>> 76646048710f3fb39d8cac556c9155a3f25051c2
 			exit_error(stack, argv, split_flag);
 		if (!check_duplicates(nb, *stack))
 			exit_error(stack, argv, split_flag);
