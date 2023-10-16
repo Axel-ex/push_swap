@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 09:30:08 by achabrer          #+#    #+#             */
-/*   Updated: 2023/10/11 17:23:33 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/10/16 15:11:50 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,6 +160,14 @@ void	sa(t_node **stack);
  * @param stack 
  */
 void	sb(t_node **stack);
+
+/**
+ * @brief swap the first element of both stacks.
+ * 
+ * @param stack_a 
+ * @param stack_b 
+ */
+void	ss(t_node **stack_a, t_node **stack_b);
 
 // =============================================================================
 // PUSH.C

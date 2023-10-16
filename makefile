@@ -31,7 +31,7 @@ all: $(NAME)
 	@echo "$(GREEN)$(NAME) executable created$(RESET)"
 
 bonus: $(OBJ_BONUS)
-	@cc $(FLAGS) bonus/checker.c $(OBJ_BONUS) $(LIBFT) -o checker
+	@cc $(FLAGS) -g bonus/checker.c $(OBJ_BONUS) $(LIBFT) -o checker
 	@echo "[$(GREEN)compiling$(RESET)]: checker.c"
 	
 $(OBJ_DIR):

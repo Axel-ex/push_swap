@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 12:53:32 by achabrer          #+#    #+#             */
-/*   Updated: 2023/10/16 14:15:46 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/10/16 16:26:26 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,66 @@
 
 int	check_line(char *line)
 {
-	while (*line)
-	{
-		if (*line == 'a')
-			return (1);
-		line++;
-	}
+	if (!ft_strncmp("ra", line, 3) || !ft_strncmp("rb", line, 3)
+		|| !ft_strncmp("rra", line, 3) || !ft_strncmp("rrb", line, 3)
+		|| !ft_strncmp("rr", line, 3) || !ft_strncmp("rrr", line, 4)
+		|| !ft_strncmp("sa", line, 3) || !ft_strncmp("sb", line, 3)
+		|| !ft_strncmp("ss", line, 3) || !ft_strncmp("pa", line, 3)
+		|| !ft_strncmp("pb", line, 3))
+		return (1);
 	return (0);
 }
 
-void	read_command(void)
+void	execute_command(char *line, t_node **stack_a, t_node **stack_b)
+{
+	if (!ft_strncmp("ra", line, 3))
+		ra(stack_a, false);
+	else if (!ft_strncmp("rb", line, 3))
+		rb(stack_b, false);
+	else if (!ft_strncmp("rra", line, 4))
+		ra(stack_a, true);
+	else if (!ft_strncmp("rrb", line, 4))
+		rb(stack_b, true);
+	else if (!ft_strncmp("rr", line, 3))
+		rotate_both(stack_a, stack_b, get_cheapest(*stack_b), false);
+	else if (!ft_strncmp("rrr", line, 4))
+		rotate_both(stack_a, stack_b, get_cheapest(*stack_b), true);
+	else if (!ft_strncmp("pa", line, 3))
+		pa(stack_a, stack_b);
+	else if (!ft_strncmp("pb", line, 3))
+		pb(stack_a, stack_b);
+	else if (!ft_strncmp("sa", line, 3))
+		sa(stack_a);
+	else if (!ft_strncmp("sb", line, 3))
+		sb(stack_b);
+	else if (!ft_strncmp("ss", line, 3))
+		ss(stack_a, stack_b);
+}
+
+void	read_command(t_node **stack_a, t_node **stack_b)
 {
 	char	*line;
+	char	buf;
+	int		i;
 
-	while (1)
+	i = 0;
+	line = ft_calloc(sizeof(char *), 4);
+	while (read(0, &buf, 1))
 	{
-		line = get_next_line(0);
-		if (!check_line(line))
+		if (i >= 3 || buf == '\n')
 		{
-			free(line);
-			break ;
+			line[i] = '\0';
+			if (!check_line(line))
+			{
+				free(line);
+				printf("Error\n");
+				break ;
+			}
+			execute_command(line, stack_a, stack_b);
+			i = 0;
 		}
-		free(line);
+		else
+			line[i++] = buf;
 	}
 }
 
@@ -52,10 +90,13 @@ int	main(int argc, char **argv)
 		argv = split(argv[1], ' ');
 	if (!check_valid_char(argv))
 		exit_error(NULL, argv, argc == 2);
-	read_command();
-	if (is_sorted(stack_a))
+	stack_init(&stack_a, argv, argc == 2);
+	read_command(&stack_a, &stack_b);
+	if (is_sorted(stack_a) && !stack_b)
 		ft_printf("OK\n");
 	else
 		ft_printf("KO\n");
+	destroy_stack(&stack_a);
+	destroy_stack(&stack_b);
 	return (EXIT_SUCCESS);
 }
