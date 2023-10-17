@@ -31,7 +31,7 @@ The program will display the instructions it executed in order to sort the integ
 ```shell
 nums=$(gshuf -i 1-2147483647 -n 500 | tr '\n' ' ') ; ./push_swap $nums | wc -l
 ```
-This command will execute the program on a randomly generated integer list. To visualize the programme working, I recommand the vizualiser of elijahkash:
+This command will execute the program on a randomly generated integer list. To visualize the program working, I recommand the vizualiser of elijahkash:
 ```shell
 pip3 install push_swap_gui
 python3 -m push_swap_gui
