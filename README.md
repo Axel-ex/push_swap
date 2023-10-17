@@ -20,5 +20,19 @@ The algorithm first parses the argument that should be a list of integer. It the
 More info: [subject.pdf](https://github.com/Axel-ex/push_swap/blob/main/subject.pdf)
 
 ## Usage 
+`git clone` this project `cd` into it and `make`. the program is executed as so:
 
-## Test 
+```shell
+./push_swap <integer_list>
+```
+The program will display the instructions it executed in order to sort the integer_list you provided.
+
+## Test
+```shell
+nums=$(gshuf -i 1-2147483647 -n 500 | tr '\n' ' ') ; ./push_swap $nums | wc -l
+```
+This command will execute the program on a randomly generated integer list. To visualize the programme working, I recommand the vizualiser of elijahkash:
+```shell
+pip3 install push_swap_gui
+python3 -m push_swap_gui
+```
