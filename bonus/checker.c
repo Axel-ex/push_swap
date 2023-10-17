@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 12:53:32 by achabrer          #+#    #+#             */
-/*   Updated: 2023/10/16 16:26:26 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/10/17 10:26:41 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,36 +27,34 @@ int	check_line(char *line)
 void	execute_command(char *line, t_node **stack_a, t_node **stack_b)
 {
 	if (!ft_strncmp("ra", line, 3))
-		ra(stack_a, false);
+		ra(stack_a, false, true);
 	else if (!ft_strncmp("rb", line, 3))
-		rb(stack_b, false);
+		rb(stack_b, false, true);
 	else if (!ft_strncmp("rra", line, 4))
-		ra(stack_a, true);
+		ra(stack_a, true, true);
 	else if (!ft_strncmp("rrb", line, 4))
-		rb(stack_b, true);
+		rb(stack_b, true, true);
 	else if (!ft_strncmp("rr", line, 3))
-		rotate_both(stack_a, stack_b, get_cheapest(*stack_b), false);
+		rotate_both(stack_a, stack_b, false);
 	else if (!ft_strncmp("rrr", line, 4))
-		rotate_both(stack_a, stack_b, get_cheapest(*stack_b), true);
+		rotate_both(stack_a, stack_b, true);
 	else if (!ft_strncmp("pa", line, 3))
-		pa(stack_a, stack_b);
+		pa(stack_a, stack_b, true);
 	else if (!ft_strncmp("pb", line, 3))
-		pb(stack_a, stack_b);
+		pb(stack_a, stack_b, true);
 	else if (!ft_strncmp("sa", line, 3))
-		sa(stack_a);
+		sa(stack_a, true);
 	else if (!ft_strncmp("sb", line, 3))
-		sb(stack_b);
+		sb(stack_b, true);
 	else if (!ft_strncmp("ss", line, 3))
-		ss(stack_a, stack_b);
+		ss(stack_a, stack_b, true);
 }
 
-void	read_command(t_node **stack_a, t_node **stack_b)
+void	read_command(t_node **stack_a, t_node **stack_b, int i)
 {
 	char	*line;
 	char	buf;
-	int		i;
 
-	i = 0;
 	line = ft_calloc(sizeof(char *), 4);
 	while (read(0, &buf, 1))
 	{
@@ -66,10 +64,14 @@ void	read_command(t_node **stack_a, t_node **stack_b)
 			if (!check_line(line))
 			{
 				free(line);
-				printf("Error\n");
-				break ;
+				destroy_stack(stack_a);
+				destroy_stack(stack_b);
+				ft_printf("Error\n");
+				exit(EXIT_FAILURE);
 			}
 			execute_command(line, stack_a, stack_b);
+			free(line);
+			line = ft_calloc(sizeof(char *), 4);
 			i = 0;
 		}
 		else
@@ -91,7 +93,7 @@ int	main(int argc, char **argv)
 	if (!check_valid_char(argv))
 		exit_error(NULL, argv, argc == 2);
 	stack_init(&stack_a, argv, argc == 2);
-	read_command(&stack_a, &stack_b);
+	read_command(&stack_a, &stack_b, 0);
 	if (is_sorted(stack_a) && !stack_b)
 		ft_printf("OK\n");
 	else

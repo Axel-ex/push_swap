@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 13:10:30 by achabrer          #+#    #+#             */
-/*   Updated: 2023/09/18 17:07:54 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/10/17 09:21:40 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ static void	push(t_node **stack_from, t_node **stack_to)
 		return ;
 	to_push = *stack_from;
 	*stack_from = (*stack_from)->next;
-	if (*stack_from)
-		(*stack_from)->prev = NULL;
 	if (!*stack_to)
 	{
 		*stack_to = to_push;
@@ -29,20 +27,21 @@ static void	push(t_node **stack_from, t_node **stack_to)
 	}
 	else
 	{
-		(*stack_to)->prev = to_push;
 		to_push->next = *stack_to;
 		*stack_to = to_push;
 	}
 }
 
-void	pa(t_node **stack_a, t_node **stack_b)
+void	pa(t_node **stack_a, t_node **stack_b, bool silent)
 {
 	push(stack_b, stack_a);
-	ft_printf("pa\n");
+	if (!silent)
+		ft_printf("pa\n");
 }
 
-void	pb(t_node **stack_a, t_node **stack_b)
+void	pb(t_node **stack_a, t_node **stack_b, bool silent)
 {
 	push(stack_a, stack_b);
-	ft_printf("pb\n");
+	if (!silent)
+		ft_printf("pb\n");
 }

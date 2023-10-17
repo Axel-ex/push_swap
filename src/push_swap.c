@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 13:55:57 by achabrer          #+#    #+#             */
-/*   Updated: 2023/10/11 09:43:48 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/10/17 09:26:39 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,16 @@ void	finish_rotation(t_node **stack, t_node *top, char stack_name)
 		if (stack_name == 'a')
 		{
 			if (top->above_median)
-				ra(stack, false);
+				ra(stack, false, false);
 			else
-				ra(stack, true);
+				ra(stack, true, false);
 		}
 		else
 		{
 			if (top->above_median)
-				rb(stack, false);
+				rb(stack, false, false);
 			else
-				rb(stack, true);
+				rb(stack, true, false);
 		}
 	}
 }
@@ -39,12 +39,12 @@ static void	move_node(t_node **stack_a, t_node **stack_b)
 
 	cheapest = get_cheapest(*stack_b);
 	if (cheapest->above_median && cheapest->target_node->above_median)
-		rotate_both(stack_a, stack_b, cheapest, false);
+		rotate_both(stack_a, stack_b, false);
 	else if (!cheapest->above_median && !cheapest->target_node->above_median)
-		rotate_both(stack_a, stack_b, cheapest, true);
+		rotate_both(stack_a, stack_b, true);
 	finish_rotation(stack_b, cheapest, 'b');
 	finish_rotation(stack_a, cheapest->target_node, 'a');
-	pa(stack_a, stack_b);
+	pa(stack_a, stack_b, false);
 }
 
 void	push_swap(t_node **stack_a, t_node **stack_b)
@@ -56,7 +56,7 @@ void	push_swap(t_node **stack_a, t_node **stack_b)
 	else
 	{
 		while (get_stack_size(*stack_a) > 3)
-			pb(stack_a, stack_b);
+			pb(stack_a, stack_b, false);
 	}
 	tiny_sort(stack_a);
 	while (*stack_b)
@@ -69,8 +69,8 @@ void	push_swap(t_node **stack_a, t_node **stack_b)
 	while (*stack_a != smallest)
 	{
 		if (smallest->above_median)
-			ra(stack_a, false);
+			ra(stack_a, false, false);
 		else
-			ra(stack_a, true);
+			ra(stack_a, true, false);
 	}
 }

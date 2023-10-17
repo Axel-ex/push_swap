@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 09:30:08 by achabrer          #+#    #+#             */
-/*   Updated: 2023/10/16 15:11:50 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/10/17 09:30:02 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ typedef struct s_node
 	bool			above_median;
 	struct s_node	*target_node;
 	struct s_node	*next;
-	struct s_node	*prev;
 }	t_node;
 
 /// ============================================================================
@@ -121,12 +120,14 @@ int		get_stack_size(t_node *stack);
 void	node_add_back(long value, t_node **stack);
 
 /**
- * @brief return the last node.
+ * @brief return the last node. if second_last true,
+ * return the second to last node.
  * 
  * @param stack 
- * @return t_node* adress of last node 
+ * @param second_last 
+ * @return t_node* 
  */
-t_node	*get_last_node(t_node *stack);
+t_node	*get_last_node(t_node *stack, bool second_last);
 
 /**
  * @brief return the node holding the highest value.
@@ -150,24 +151,27 @@ t_node	*get_smallest(t_node *stack);
 /**
  * @brief swap the two first element of stack_a. 
  * 
- * @param stack 
+ * @param stack
+ * @param silent if true, no message is printed on stdout 
  */
-void	sa(t_node **stack);
+void	sa(t_node **stack, bool silent);
 
 /**
  * @brief swap the two first element of stack_b.
  * 
  * @param stack 
+ * @param silent if true, no message is printed on stdout 
  */
-void	sb(t_node **stack);
+void	sb(t_node **stack, bool silent);
 
 /**
  * @brief swap the first element of both stacks.
  * 
  * @param stack_a 
  * @param stack_b 
+ * @param silent if true, no message is printed on stdout 
  */
-void	ss(t_node **stack_a, t_node **stack_b);
+void	ss(t_node **stack_a, t_node **stack_b, bool silent);
 
 // =============================================================================
 // PUSH.C
@@ -177,16 +181,18 @@ void	ss(t_node **stack_a, t_node **stack_b);
  * 
  * @param stack_a 
  * @param stack_b 
+ * @param silent if true, no message is printed on stdout 
  */
-void	pa(t_node **stack_a, t_node **stack_b);
+void	pa(t_node **stack_a, t_node **stack_b, bool silent);
 
 /**
  * @brief push first element of stack_a to stack_b.
  * 
  * @param stack_a 
  * @param stack_b 
+ * @param silent if true, no message is printed on stdout 
  */
-void	pb(t_node **stack_a, t_node **stack_b);
+void	pb(t_node **stack_a, t_node **stack_b, bool silent);
 
 // =============================================================================
 // ROTATE.C
@@ -197,8 +203,9 @@ void	pb(t_node **stack_a, t_node **stack_b);
  * 
  * @param stack_a 
  * @param reverse_flag if true, shift down
+ * @param silent if true, no message is printed on stdout 
  */
-void	ra(t_node **stack_a, bool reverse_flag);
+void	ra(t_node **stack_a, bool reverse_flag, bool silent);
 
 /**
  * @brief shift stack_b up of one element. if reverse_flag true
@@ -206,8 +213,9 @@ void	ra(t_node **stack_a, bool reverse_flag);
  * 
  * @param stack_b 
  * @param reverse_flag if true, shift down
+ * @param silent if true, no message is printed on stdout 
  */
-void	rb(t_node **stack_b, bool reverse_flag);
+void	rb(t_node **stack_b, bool reverse_flag, bool silent);
 
 /**
  * @brief shift both stacks up until the cheapest node is on top of stack_b
@@ -216,11 +224,9 @@ void	rb(t_node **stack_b, bool reverse_flag);
  * 
  * @param stack_a
  * @param stack_b
- * @param cheapest 
  * @param reverse_flag if true, shift down
  */
-void	rotate_both(t_node **stack_a, t_node **stack_b,
-			t_node *cheapest, bool reverse_flag);
+void	rotate_both(t_node **stack_a, t_node **stack_b, bool reverse_flag);
 
 // =============================================================================
 // TINY_SORT.C

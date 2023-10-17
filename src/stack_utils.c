@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 14:44:18 by achabrer          #+#    #+#             */
-/*   Updated: 2023/09/21 11:06:42 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/10/17 09:00:29 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,24 +23,24 @@ void	node_add_back(long nb, t_node **stack)
 	new->data = (int)nb;
 	new->next = NULL;
 	if (!*stack)
-	{
 		*stack = new;
-		new->prev = NULL;
-	}
 	else
 	{
-		last = get_last_node(*stack);
+		last = get_last_node(*stack, false);
 		last->next = new;
-		new->prev = last;
 	}
 }
 
-t_node	*get_last_node(t_node *stack)
+t_node	*get_last_node(t_node *stack, bool second_last)
 {
 	if (!stack)
 		return (NULL);
-	while (stack->next)
-		stack = stack->next;
+	if (!second_last)
+		while (stack->next)
+			stack = stack->next;
+	else
+		while (stack->next->next)
+			stack = stack->next;
 	return (stack);
 }
 

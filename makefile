@@ -41,8 +41,8 @@ $(NAME): $(OBJ) $(LIBFT)
 	@cc $(FLAGS) -I $(INC) $(OBJ) $(LIBFT) -o $(NAME)
 
 $(LIBFT):
-	make -C Libft/
-	make clean -C Libft/
+	@make -C Libft/
+	@make clean -C Libft/
 
 clean:
 	@rm -rf $(OBJ_DIR)
@@ -51,6 +51,7 @@ clean:
 fclean: clean
 	@rm -rf $(NAME)
 	@rm -rf $(BONUS)
+	@make fclean -C Libft/
 	@echo "$(RED)removing $(NAME) executable$(RESET)"
 	@echo "$(RED)removing $(BONUS) executable$(RESET)"
 

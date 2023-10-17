@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 09:32:17 by achabrer          #+#    #+#             */
-/*   Updated: 2023/10/11 12:07:47 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/10/17 09:27:08 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	main(int argc, char **argv)
 	if (!is_sorted(stack_a))
 	{
 		if (get_stack_size(stack_a) == 2)
-			sa(&stack_a);
+			sa(&stack_a, false);
 		if (get_stack_size(stack_a) == 3)
 			tiny_sort(&stack_a);
 		else
