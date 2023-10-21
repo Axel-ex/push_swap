@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 09:30:08 by achabrer          #+#    #+#             */
-/*   Updated: 2023/10/17 09:30:02 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/10/21 13:26:21 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -289,6 +289,50 @@ void	init_nodes(t_node **stack_a, t_node **stack_b);
  * @return t_node* 
  */
 t_node	*get_cheapest(t_node *stack);
+
+// =============================================================================
+// MID_POINT.C
+// =============================================================================
+/**
+ * @brief transfer elements from stack_a to stack_b by sorting in the
+ * backend the array and finding the value positioned in the middle.
+ * elements smaller than the middle value are transfered to stack_b.
+ * Operation is done until 3 numbers remain on the stack_a.
+ * 
+ * @param stack_a 
+ * @param stack_b 
+ */
+void	transfer_to_b(t_node **stack_a, t_node **stack_b);
+
+// =============================================================================
+// MID_POINT_UTIL.C
+// =============================================================================
+/**
+ * @brief Get the first occurence of the number smaller than middle point.
+ * 
+ * @param stack_a 
+ * @param middle_point of the sorted array
+ * @return int index of the first occurence
+ */
+int		get_first_occur(t_node *stack_a, int middle_point);
+
+/**
+ * @brief Get the last occurence of the number smaller than middle point.
+ * 
+ * @param stack_a 
+ * @param middle_point 
+ * @return int 
+ */
+int		get_last_occur(t_node *stack_a, int middle_point);
+
+/**
+ * @brief got to node positioned at head + index.
+ * 
+ * @param stack_a 
+ * @param index 
+ * @return t_node* 
+ */
+t_node	*got_to_node(t_node *stack_a, int index);
 
 // =============================================================================
 // PUSH_SWAP.C

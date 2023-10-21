@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 13:55:57 by achabrer          #+#    #+#             */
-/*   Updated: 2023/10/17 09:26:39 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/10/21 13:28:12 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,7 @@ void	push_swap(t_node **stack_a, t_node **stack_b)
 	if (get_stack_size(*stack_a) == 5)
 		small_sort(stack_a, stack_b);
 	else
-	{
-		while (get_stack_size(*stack_a) > 3)
-			pb(stack_a, stack_b, false);
-	}
+		transfer_to_b(stack_a, stack_b);
 	tiny_sort(stack_a);
 	while (*stack_b)
 	{
