@@ -6,13 +6,11 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 09:32:17 by achabrer          #+#    #+#             */
-/*   Updated: 2023/10/21 13:11:11 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/10/26 09:51:52 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pushswap.h"
-
-int	*get_sorted_array(t_node *stack);
 
 int	main(int argc, char **argv)
 {
