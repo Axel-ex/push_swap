@@ -42,11 +42,10 @@ $(NAME): $(OBJ) $(LIBFT)
 
 $(LIBFT):
 	@make -C Libft/
-	@make clean -C Libft/
 
 clean:
 	@rm -rf $(OBJ_DIR)
-	@echo "$(YELLOW)Removing objects files$(RESET)"
+	@echo "$(YELLOW)Removing $(NAME) objects files$(RESET)"
 
 fclean: clean
 	@rm -rf $(NAME)
