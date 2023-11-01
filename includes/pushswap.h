@@ -6,7 +6,7 @@
 /*   By: achabrer <achabrer@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 09:30:08 by achabrer          #+#    #+#             */
-/*   Updated: 2023/11/01 14:41:19 by achabrer         ###   ########.fr       */
+/*   Updated: 2023/11/01 18:24:38 by achabrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <stdio.h>
 # include <stdbool.h>
 # include <limits.h>
-# include "../Libft/srcs_libft/libft.h"
+# include "../Libft/includes/libft.h"
 
 typedef struct s_node
 {
