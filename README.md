@@ -16,7 +16,7 @@ Instructions allowed are the following:
 | rrb | Shift down all elements of stack b by 1. The last element becomes the first one.
 | rrr | rra and rrb at the same time.
 
-The algorithm first parses the argument that should be a list of integer. It then pushes everything on stack b and does a trivial sort of the 3 elements left on stack a. The algorithm then associate each elements of stack b (node) to an element of stack a (target_node), and calculate a price based ont the respective position of both. the cheapest pair of nodes are then passed to the top of their respective stacks and the top element of stack b is pushed back to stack a in the correct position. Once the stack b is empty, stack a is rotated until its smallest element is on the top.
+The algorithm first parses the argument that should be a list of integer formated as `"1 2 3 4 5"` or `1 2 3 4 5`. It then pushes everything on stack b and does a trivial sort of the 3 elements left on stack a. The algorithm then associate each elements of stack b (node) to an element of stack a (target_node), and calculate a price based ont the respective position of both. the cheapest pair of nodes are then passed to the top of their respective stacks and the top element of stack b is pushed back to stack a in the correct position. Once the stack b is empty, stack a is rotated until its smallest element is on the top.
 More info: [subject.pdf](https://github.com/Axel-ex/push_swap/blob/main/subject.pdf)
 
 ## Usage 
@@ -25,8 +25,15 @@ More info: [subject.pdf](https://github.com/Axel-ex/push_swap/blob/main/subject.
 ```shell
 ./push_swap <integer_list>
 ```
-The program will display the instructions it executed in order to sort the integer_list you provided.
-
+The program will display the instructions it executed in order to sort the integer_list you provided. Additionally, if you run `make bonus` you'll have access to the checker executable. the checker is executed as so:
+```shell
+./checker
+```
+The checker will wait for the user to enter valid commands. If a valid command is prompted, the checker will execute it and wait for the next instruction. the checker stops when the user hits `CTRL-D`. if the stack is sorted upon signal reception, it will display **OK** otherwise it will display **KO**. The checker can also be executed as so:
+```shell
+ARGS=<integer_list> && ./push_swap $ARGS | ./checker $ARGS
+```
+the output of push swap will be redirected to the checker and the checker will perform the moves on the stack and check if the stack is sorted.
 ## Test
 ```shell
 nums=$(gshuf -i 1-2147483647 -n 500 | tr '\n' ' ') ; ./push_swap $nums | wc -l
